@@ -7,11 +7,12 @@ const ProductCard = ({ product, fetchProductsData }) => {
   const { addToCart } = useContext(CartContext)
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (_id) => {
     try {
       setIsDeleteLoading(true);
       const response = await fetch(
-        `https://6532fc12d80bd20280f632e8.mockapi.io/api/products/${id}`,
+        `${import.meta.env.VITE_BACKEND_URL}product/${_id}`,
+        //`https://6532fc12d80bd20280f632e8.mockapi.io/api/products/${id}`,
         {
           method: "DELETE",
         }
@@ -41,7 +42,7 @@ const ProductCard = ({ product, fetchProductsData }) => {
               <FaCartShopping />
               Agregar
             </button>
-            <button onClick={() => handleDelete(product.id)}>
+            <button onClick={() => handleDelete(product._id)}>
               {" "}
               <FaTrashCan />
               Eliminar

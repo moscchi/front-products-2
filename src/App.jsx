@@ -6,8 +6,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { CartProvider } from "./context/CartContext";
 import Header from "./components/Header";
 import InformativeModal from "./components/InformativeModal";
+import Home from "./pages/Home";
 
 const App = () => {
+
+  console.log(import.meta.env.VITE_BACKEND_URL)
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -17,7 +20,7 @@ const App = () => {
   }, []);
 
   const fetchProductsData = async () => {
-    const url = "https://6532fc12d80bd20280f632e8.mockapi.io/api/products";
+    const url = `${import.meta.env.VITE_BACKEND_URL}product`//"https://6532fc12d80bd20280f632e8.mockapi.io/api/products";
 
     try {
       const response = await fetch(url);
@@ -36,6 +39,7 @@ const App = () => {
     <>
       <CartProvider>
         <Header fetchProductsData={fetchProductsData}/>
+        <Home />
         {products.length > 0 ? (
           <ProductList
             products={products}

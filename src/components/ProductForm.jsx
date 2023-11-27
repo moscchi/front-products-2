@@ -8,6 +8,7 @@ const ProductForm = ({ fetchData }) => {
     name: "",
     description: "",
     price: 0,
+    stock: 10
   });
   const [openModal, setOpenModal] = useState(false)
   const handleUpdateProductFormValues = (value, inputReference) => {
@@ -21,14 +22,16 @@ const ProductForm = ({ fetchData }) => {
       }));
     }
     if (inputReference === productFormDictionary.PRICE) {
-      setProductFormValues((prevState) => ({ ...prevState, price: value }));
+      setProductFormValues((prevState) => ({ ...prevState, price: Number(value) }));
     }
   };
 
   const handleSubmitForm = async () => {
     try {
+      console.log({productFormValues})
       const response = await fetch(
-        "https://6532fc12d80bd20280f632e8.mockapi.io/api/products",
+        `${import.meta.env.VITE_BACKEND_URL}product`,
+        //"https://6532fc12d80bd20280f632e8.mockapi.io/api/products",
         {
           method: "POST",
           headers: {
@@ -48,6 +51,7 @@ const ProductForm = ({ fetchData }) => {
       }
       toast.success("Producto Agregado con éxito.");
     } catch (error) {
+      console.error(error)
       toast.error("Error al agregar un producto.");
     }
   };

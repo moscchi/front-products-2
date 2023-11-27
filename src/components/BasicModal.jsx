@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ReactModal from "react-modal";
+import Button from "./Button";
 
 const customStyles = {
   content: {
@@ -76,7 +77,8 @@ const BasicModal = ({ isOpen, setIsOpen, title }) => {
       <div>
         <div className="modal-header">
           <h1>{title}</h1>
-          <button onClick={closeModal}>X</button>
+          <Button label={"X"} onClickFunction={closeModal} />
+          {/* <button onClick={closeModal}>X</button> */}
         </div>
         <form className="modal-form" method="Post" onSubmit={handleSubmit}>
           <div style={{width: '100%'}}>

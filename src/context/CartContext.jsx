@@ -18,8 +18,8 @@ const CartProvider = ({ children }) => {
   const addToCart = (product) => {
     //Solo puedo agregar ese producto una vez.
     const cartUniqueIds = new Set();
-    cart.forEach((cartProduct) => cartUniqueIds.add(cartProduct.id));
-    if (!cartUniqueIds.has(product.id)) {
+    cart.forEach((cartProduct) => cartUniqueIds.add(cartProduct._id));
+    if (!cartUniqueIds.has(product._id)) {
       setCart((prevState) => [...prevState, product]);
       toast.success("Producto agregado al carrito.");
     } else {
@@ -27,7 +27,7 @@ const CartProvider = ({ children }) => {
     }
   };
   const removeFromCart = (productId) => {
-    const newCart = cart.filter((productCart) => productCart.id !== productId);
+    const newCart = cart.filter((productCart) => productCart._id !== productId);
     setCart(newCart);
   };
   return (

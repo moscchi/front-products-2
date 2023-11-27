@@ -33,7 +33,7 @@ const CartButton = () => {
                     {productCard.name} - ${productCard.price} -{" "}
                     <FaTrashCan
                       style={{ cursor: "pointer" }}
-                      onClick={() => removeFromCart(productCard.id)}
+                      onClick={() => removeFromCart(productCard._id)}
                     />
                   </li>
                 ))}
